@@ -1,7 +1,8 @@
 function ARSQ(subectID, handedness)
 %% -------- DESCRIPTION --------
-% Master function for the Amsterdam Resting State Questionnaire (ARSQ).
-% Link to publication:
+% Function for the Amsterdam Resting State Questionnaire (ARSQ) implemented
+% in PsychToolbox in MatLab for use in the MRI scanner. Link to
+% publication:
 % https://www.frontiersin.org/articles/10.3389/fnhum.2013.00446/full.
 
 %% -------- INPUTS --------
