@@ -18,7 +18,7 @@ Screen('TextFont', window, 'Times');
 DrawFormattedText(window, [WrapString('Several statements will follow regarding potential feelings and thoughts you may have experienced during the resting period. \n\n Please indicate the extent to which you agree with each statement.',50)  '\n\n\n'], 'center', 'center', white);
 Screen('Flip', window);
 
-WaitSecs(10); % Delay before start
+WaitSecs(1); % Delay before start
 DrawFormattedText(window, [WrapString('Several statements will follow regarding potential feelings and thoughts you may have experienced during the resting period. \n\n Please indicate the extent to which you agree with each statement.',50) '\n\n\nPress any key to begin'], 'center', 'center', white);
 Screen('Flip', window);
 
