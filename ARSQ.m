@@ -8,10 +8,12 @@ function ARSQ(subectID)
 %% -------- INPUTS --------
 % subectID = subject ID [string, full path]
 
+
 %% -------- EXAMPLE --------
 % ARSQ('900723', 'right');
 
 ARSQ_modifyme;	% set the subject-specific experimental parameters
+
 
 %% -------- FUNCTION --------
 % show directions
@@ -34,6 +36,6 @@ fclose(mid);
 results_table = table(ARSQ_item,(1:length(ARSQ_item))',Rating);
 results_table.Properties.VariableNames{2} = 'Item';
 
-filename = strcat(fileparts(which('ARSQ')),'/ARSQ_',subectID,'_',strrep(strrep(strrep(datestr(datetime),' ','_'),'-','_'),':','_'),'.xlsx');
+filename = strcat(fileparts(which('ARSQ')),'/results/ARSQ_',subectID,'_',strrep(strrep(strrep(datestr(datetime),' ','_'),'-','_'),':','_'),'.xlsx');
 writetable(results_table,filename,'Sheet',1,'Range','A1');
 sca;
