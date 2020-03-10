@@ -1,4 +1,7 @@
 function [window, screenXpixels, screenYpixels] = ARSQ_directions
+
+ARSQ_modifyme;  % import the variables from modifyme
+
 % setup
 Screen('Preference', 'SkipSyncTests', 1);
 sca;
@@ -12,15 +15,68 @@ black = [0 0 0];
 Screen('BlendFunction', window, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
 [screenXpixels, screenYpixels] = Screen('WindowSize', window);
 
+[wdw, wdh] = Screen('WindowSize', window);	% Get screen size 
+if MirrorDisplay  % from DrawMirroredTextDemo.m
+        % Make a backup copy of the current transformation matrix for later
+        % use/restoration of default state:
+        % Screen('glPushMatrix', wd); % not needed 
+
+        % Translate origin into the geometric center of text:
+        Screen('glTranslate', window, wdw/2, wdh/2, 0);
+        
+        % Apply a scaling transform which flips the diretion of x-Axis,
+        % thereby mirroring the drawn text horizontally:
+        upsideDown = 0;
+        if upsideDown
+            Screen('glScale', window, 1, -1, 1);
+        else
+            Screen('glScale', window, -1, 1, 1);
+        end
+        % We need to undo the translations...
+        Screen('glTranslate', window, -wdw/2, -wdh/2, 0);
+end
+
 % put up instructions
 Screen('TextSize', window, 60);
 Screen('TextFont', window, 'Times');
-DrawFormattedText(window, [WrapString('Several statements will follow regarding potential feelings and thoughts you may have experienced during the resting period. \n\n Please indicate the extent to which you agree with each statement.',50)  '\n\n\n'], 'center', 'center', white);
-Screen('Flip', window);
 
-WaitSecs(1); % Delay before start
-DrawFormattedText(window, [WrapString('Several statements will follow regarding potential feelings and thoughts you may have experienced during the resting period. \n\n Please indicate the extent to which you agree with each statement.',50) '\n\n\nPress any key to begin'], 'center', 'center', white);
-Screen('Flip', window);
+if site == 'B'
+
+    DrawFormattedText(window, [WrapString('Es folgen mehrere Sätze über mögliche Gedanken, die Sie in den letzten 10 Minuten erlebt haben. \n\n Bitte geben Sie an, inwieweit Sie mit jedem Satz einverstanden sind.',50)  '\n\n\n'], 'center', 'center', white);
+    Screen('Flip', window);
+
+    WaitSecs(2); % Delay before start
+    DrawFormattedText(window, [WrapString('Es folgen mehrere Sätze über mögliche Gedanken, die Sie in den letzten 10 Minuten erlebt haben. \n\n Bitte geben Sie an, inwieweit Sie mit jedem Satz einverstanden sind.',50) '\n\n\n Drücken Sie eine beliebige Taste, um zu beginnen'], 'center', 'center', white);
+    Screen('Flip', window);
+
+elseif site == 'G'
+    
+    DrawFormattedText(window, [WrapString('Ensuite... \n\n Sil vous plait...',50)  '\n\n\n'], 'center', 'center', white);
+    Screen('Flip', window);
+
+    WaitSecs(2); % Delay before start
+    DrawFormattedText(window, [WrapString('Ensuite... \n\n Sil vous plait...',50) '\n\n\n Press'], 'center', 'center', white);
+    Screen('Flip', window);
+end
+
+% select any key to go forward
+KbName('UnifyKeyNames');
+while KbCheck; end  % Wait until all keys are released.
+while 1
+    [keyIsDown,~,~] = KbCheck;
+    if keyIsDown
+        break;
+    end
+end
+
+% placeholder page
+if site == 'B'
+    DrawFormattedText(window, [WrapString('bla bla.',50)  '\n\n\n'], 'center', 'center', white);
+    Screen('Flip', window); 
+elseif site == 'G'
+    DrawFormattedText(window, [WrapString('bleu bleu',50)  '\n\n\n'], 'center', 'center', white);
+    Screen('Flip', window);
+end
 
 % select any key to go forward
 KbName('UnifyKeyNames');
