@@ -12,7 +12,7 @@ debug       = 0;
 %        of the MR scanner and keys are different
 %        If set doscanner=0, then do training + instructions 
 %----------------------------------------------------------------------------
-doscanner = 0; % 0: outside scanner the scanner 
+doscanner = 1; % 0: outside scanner the scanner 
                % 1: inside the scanner 
               
 %----------------------------------------------------------------------------
@@ -24,7 +24,7 @@ dosave = 1;      % save output?
 %----------------------------------------------------------------------------
 %        Patient Information 
 %--------------------------------------------------------------------------
-site         = 'B'; % 'B' for Berlin, 'G' for Geneva 
+site         = 'G'; % 'B' for Berlin, 'G' for Geneva 
 
 Task_Version = 'B'; % Task Version 'A' or 'B', choose another one for Retest!     
 
@@ -54,5 +54,5 @@ elseif site == 'G' && doscanner == 0;
        MirrorDisplay = 0; % normal display: 0; mirror-inverted: 1
 elseif site == 'G' && doscanner == 1;
        screenNumber  = 0; % default display: 0
-       MirrorDisplay = 0; % normal display: 0; mirror-inverted: 1
+       MirrorDisplay = 1; % normal display: 0; mirror-inverted: 1
 end
