@@ -14,7 +14,8 @@ debug       = 0;
 %----------------------------------------------------------------------------
 doscanner = 1; % 0: outside scanner the scanner 
                % 1: inside the scanner 
-              
+usegamepad = 0;  % 0: defaults to keyboard
+                 % 1: for use with game pad inside scanner
 %----------------------------------------------------------------------------
 %        To save or not to save
 %        This should ALWAYS be set to 1 when doing experiments obviously
@@ -44,15 +45,15 @@ payment = 1;      % is this subject being paid / should payment info be displaye
 % display settings (multiple screens and mirror-inverted display)
 % only necessary in Berlin at MRT 1
 if site == 'B' && doscanner == 0; 
-       screenNumber  = 0; % BCAN Berlin MRT1: split screen setting with monitor
-       MirrorDisplay = 0; % display needs to be mirror-inverted
+   screenNumber  = 0; % BCAN Berlin MRT1: split screen setting with monitor
+   MirrorDisplay = 0; % display needs to be mirror-inverted
 elseif site == 'B' && doscanner == 1; 
-       screenNumber  = 0; % BCAN Berlin MRT1: split screen setting with monitor
-       MirrorDisplay = 1; % display needs to be mirror-inverted     
+   screenNumber  = 0; % BCAN Berlin MRT1: split screen setting with monitor
+   MirrorDisplay = 1; % display needs to be mirror-inverted     
 elseif site == 'G' && doscanner == 0;
-       screenNumber  = 0; % default display: 0
-       MirrorDisplay = 0; % normal display: 0; mirror-inverted: 1
+   screenNumber  = 0; % default display: 0
+   MirrorDisplay = 0; % normal display: 0; mirror-inverted: 1
 elseif site == 'G' && doscanner == 1;
-       screenNumber  = 0; % default display: 0
-       MirrorDisplay = 1; % normal display: 0; mirror-inverted: 1
+   screenNumber  = 0; % default display: 0
+   MirrorDisplay = 1; % normal display: 0; mirror-inverted: 1
 end
