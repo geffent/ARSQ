@@ -71,7 +71,7 @@ for i = 1:length(ARSQ_item)
                 end
                 Screen('Flip', window);      
             end
-
+            
             % Check if Return was pressed _and_ subject gave valid
             % answer
             numberOfQuestionsAsked = i;
