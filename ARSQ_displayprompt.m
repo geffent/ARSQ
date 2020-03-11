@@ -3,6 +3,7 @@ function [response] = ARSQ_displayprompt(ARSQ_item, window, screenXpixels, scree
 
 ARSQ_modifyme;	% set the subject-specific experimental parameters
 
+% custom definitions depending on input source, keyboard or game pad
 if usegamepad == 0  % for use with keyboard
     one = '1!';         
     two = '2@';          
