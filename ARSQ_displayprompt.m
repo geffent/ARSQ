@@ -3,6 +3,20 @@ function [response] = ARSQ_displayprompt(ARSQ_item, window, screenXpixels, scree
 
 ARSQ_modifyme;	% set the subject-specific experimental parameters
 
+if usegamepad == 0  % for use with keyboard
+    one = '1!';         
+    two = '2@';          
+    three = '3#';
+    four = '4$';
+    confirm = 'Return';
+elseif usegamepad == 1  % for use with gamepad inside scanner
+    one = '1';         
+    two = '2';          
+    three = '3';
+    four = '4';
+    confirm = '6';
+end
+
 Screen('TextFont', window, 'Times');
 x_locs = [screenXpixels*0.20, screenXpixels*0.40, screenXpixels*0.60, screenXpixels*0.80];
 
@@ -41,19 +55,20 @@ for i = 1:length(ARSQ_item)
             v = find(keyCode);
             keyname = KbName(v);
                 
-            if strcmp(keyname, '1!') || strcmp(keyname, '2@') ...
-                    || strcmp(keyname, '3#') || strcmp(keyname, '4$')
+            if strcmp(keyname, one) || strcmp(keyname, two) ...
+                    || strcmp(keyname, three) || strcmp(keyname, four)
 
-                response(i,:) = str2num(keyname(1)); %#ok
-
+                response(i,:) = str2num(keyname(1));
                 % redraw the whole screen marking the chosen answer
                 Screen('TextSize', window, 80);
                 DrawFormattedText(window, WrapString(a{1},30),'center',screenYpixels*0.3, [1 1 1]);
+                
                 % paint the chosen number in green, the others in black
                 for j = 1:4
                     if str2num(keyname(1)) == j
+                        % paint it green
                         DrawFormattedText(window,num2str(j),x_locs(j),screenYpixels*0.75, [0 1 0]);
-                    else
+                    else  % paint it black
                         DrawFormattedText(window,num2str(j),x_locs(j),screenYpixels*0.75, [1 1 1]);
                     end
                 end
@@ -71,12 +86,11 @@ for i = 1:length(ARSQ_item)
                 end
                 Screen('Flip', window);      
             end
-            
-            % Check if Return was pressed _and_ subject gave valid
-            % answer
+
+            % Check if Return was pressed _and_ subject gave valid answer
             numberOfQuestionsAsked = i;
             numberOfValidAnswersGiven = size(response, 1);
-            if strcmp(keyname, 'Return') && ...
+            if strcmp(keyname, confirm) && ...
                 numberOfValidAnswersGiven == numberOfQuestionsAsked
                 res = response(i, :);
                 if (res == 1 || res == 2 || res == 3 || res == 4)
