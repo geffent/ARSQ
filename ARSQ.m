@@ -1,21 +1,7 @@
-function ARSQ(subectID)
-%% -------- DESCRIPTION --------
-% Function for the Amsterdam Resting State Questionnaire (ARSQ) implemented
-% in PsychToolbox in MatLab for use in the MRI scanner. Link to
-% publication:
-% https://www.frontiersin.org/articles/10.3389/fnhum.2013.00446/full.
+function ARSQ()
 
-%% -------- INPUTS --------
-% subectID = subject ID [string, full path]
+ARSQ_modifyme;	% import subject-specific experiment parameters
 
-
-%% -------- EXAMPLE --------
-% ARSQ('900723', 'right');
-
-ARSQ_modifyme;	% set the subject-specific experimental parameters
-
-
-%% -------- FUNCTION --------
 % show directions
 [window, screenXpixels, screenYpixels] = ARSQ_directions;
 
@@ -36,6 +22,9 @@ fclose(mid);
 results_table = table(ARSQ_item,(1:length(ARSQ_item))',Rating);
 results_table.Properties.VariableNames{2} = 'Item';
 
-filename = strcat(fileparts(which('ARSQ')),'/results/ARSQ_',subectID,'_',strrep(strrep(strrep(datestr(datetime),' ','_'),'-','_'),':','_'),'.xlsx');
-writetable(results_table,filename,'Sheet',1,'Range','A1');
+% generate file name and save to file
+filename = strcat(fileparts(which('ARSQ')), filesep, 'results', filesep, ...
+    site, group, subjn, session, '_', datestr(now,'yymmdd_HHMM'), '.xlsx');
+writetable(results_table, filename, 'Sheet', 1, 'Range', 'A1');
+
 sca;
