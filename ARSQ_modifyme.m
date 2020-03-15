@@ -2,58 +2,48 @@ fprintf('............ Setting basic parameters according to \n')
 fprintf('............            MODIFYME.M\n'); 
 fprintf('............ \n')
 
-doinstr     = 0; % 0: no instructions, just the experiment inside or outside the scanner
-                 % 1: instructions and training 
-             
-debug       = 0;
+debug = 0;
 
-%----------------------------------------------------------------------------
-%        If set doscanner=1 exp will wait for the first trigger 
-%        of the MR scanner and keys are different
-%        If set doscanner=0, then do training + instructions 
-%----------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+% some things are different inside the scanner, e.g., text is mirrored
 doscanner = 1; % 0: outside scanner the scanner 
                % 1: inside the scanner 
-usegamepad = 1;  % 0: defaults to keyboard
-                 % 1: for use with game pad inside scanner
-%----------------------------------------------------------------------------
-%        To save or not to save
-%        This should ALWAYS be set to 1 when doing experiments obviously
-%----------------------------------------------------------------------------
-dosave = 1;      % save output? 
 
-%----------------------------------------------------------------------------
+%--------------------------------------------------------------------------
 %        Patient Information 
 %--------------------------------------------------------------------------
-site         = 'G'; % 'B' for Berlin, 'G' for Geneva 
+site = 'B'; % 'B' for Berlin, 'G' for Geneva 
+group = 'pilot';      % 'C' for controls, and 'S' for patients; 'RLP' for pilot 
+subjn = 'x8x'; % Subject Number.; Pilot start with 041
+session = 'T2'; % Session Number: T1 for first assessment, T2 for 2nd assessment
 
-Task_Version = 'B'; % Task Version 'A' or 'B', choose another one for Retest!     
+%--------------------------------------------------------------------------
+% KEY SETTINGS - no need to change!
+%--------------------------------------------------------------------------
+% define keys to press for answering the questions
+% there's a scale from 1 to 4, and 6 for confirming the choice
+one = '1';  % on the MRI buttons this is the top right button (blue)
+two = '2';
+three = '3';
+four = '4';
+confirm = '6';  % when using the MRI button tool, this is the top left
 
-type = 'pilot';      % 'C' for controls, and 'S' for patients; 'RLP' for pilot 
-
-subjn = 'x8x';       % Subject Number.; Pilot start with 041
-
-session = 'T1';    % Session Number: T1 for first assessment, T2 for 2nd assessment
-
-payment = 1;      % is this subject being paid / should payment info be displayed
-                  % at the end? Set this to zero for training!
-
-%----------------------------------------------------------------------------
-%        DISPLAY SETTINGS
-%
-%----------------------------------------------------------------------------
+%--------------------------------------------------------------------------
+% DISPLAY SETTINGS - set automatically according to site and doscanner!
+%--------------------------------------------------------------------------
 % display settings (multiple screens and mirror-inverted display)
 % only necessary in Berlin at MRT 1
-if site == 'B' && doscanner == 0; 
+if site == 'B' && doscanner == 0
    screenNumber  = 0; % BCAN Berlin MRT1: split screen setting with monitor
    MirrorDisplay = 0; % display needs to be mirror-inverted
-elseif site == 'B' && doscanner == 1; 
+elseif site == 'B' && doscanner == 1
    screenNumber  = 0; % BCAN Berlin MRT1: split screen setting with monitor
    MirrorDisplay = 1; % display needs to be mirror-inverted     
-elseif site == 'G' && doscanner == 0;
+elseif site == 'G' && doscanner == 0
    screenNumber  = 0; % default display: 0
    MirrorDisplay = 0; % normal display: 0; mirror-inverted: 1
-elseif site == 'G' && doscanner == 1;
+elseif site == 'G' && doscanner == 1
    screenNumber  = 0; % default display: 0
    MirrorDisplay = 1; % normal display: 0; mirror-inverted: 1
 end
+
