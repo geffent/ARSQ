@@ -1,6 +1,7 @@
 **Questionnaire for post-resting-state thought patterns, for use in scanner.**
 
-To launch the task, just run `ARSQ()` (no arguments)
+To launch the task, just run `ARSQ()`  
+(no arguments required)
 
 The output is an excel spreadshit with the subject's answers.
 One file per subject.
