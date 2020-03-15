@@ -1,30 +1,10 @@
+
 function [response] = ARSQ_displayprompt(ARSQ_item, window, screenXpixels, screenYpixels)
 
 ARSQ_modifyme;	% set the subject-specific experimental parameters
 
-% custom definitions depending on input source, keyboard or game pad
-if usegamepad == 0  % for use with keyboard
-%     one = '1!';         
-%     two = '2@';          
-%     three = '3#';
-%     four = '4$';
-%     confirm = 'Return';
-%     
-    one = '1';         
-    two = '2';          
-    three = '3';
-    four = '4';
-    confirm = '6';
-elseif usegamepad == 1  % for use with gamepad inside scanner
-    one = '1';         
-    two = '2';          
-    three = '3';
-    four = '4';
-    confirm = '6';
-end
-
-% keys & display settings (multiple screens and mirror-inverted)
- KbName('UnifyKeyNames');
+% 
+KbName('UnifyKeyNames');
 
 Screen('TextFont', window, 'Times');
 x_locs = [screenXpixels*0.20, screenXpixels*0.40, screenXpixels*0.60, screenXpixels*0.80];
@@ -61,10 +41,10 @@ for i = 1:length(ARSQ_item)
         % Check the state of the keyboard.
         [keyIsDown,~,keyCode] = KbCheck;
         if keyIsDown
-%             v = find(keyCode);
-%             keyname = KbName(v);
-               keyname = KbName(keyCode);
-               if iscell(keyname); keyname=keyname{1};end
+            keyname = KbName(keyCode);
+            if iscell(keyname)
+                keyname=keyname{1};
+            end
             
             if strcmp(keyname(1), one) || strcmp(keyname(1), two) ...
                     || strcmp(keyname(1), three) || strcmp(keyname(1), four)
