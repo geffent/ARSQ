@@ -14,7 +14,7 @@ debug       = 0;
 %----------------------------------------------------------------------------
 doscanner = 1; % 0: outside scanner the scanner 
                % 1: inside the scanner 
-usegamepad = 0;  % 0: defaults to keyboard
+usegamepad = 1;  % 0: defaults to keyboard
                  % 1: for use with game pad inside scanner
 %----------------------------------------------------------------------------
 %        To save or not to save
