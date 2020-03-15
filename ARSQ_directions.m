@@ -52,11 +52,11 @@ if site == 'B'
 
 elseif site == 'G'
     
-    DrawFormattedText(window, [WrapString('Ensuite... \n\n Sil vous plait...',50)  '\n\n\n'], 'center', 'center', white);
+    DrawFormattedText(window, [WrapString('Voici quelques phrases sur les pensées possibles que vous avez vécues au cours des dix dernières minutes. \n\n Veuillez indiquer dans quelle mesure vous êtes d"accord avec chaque phrase.',50)  '\n\n\n'], 'center', 'center', white);
     Screen('Flip', window);
 
     WaitSecs(2); % Delay before start
-    DrawFormattedText(window, [WrapString('Ensuite... \n\n Sil vous plait...',50) '\n\n\n Press'], 'center', 'center', white);
+    DrawFormattedText(window, [WrapString('Voici quelques phrases sur les pensées possibles que vous avez vécues au cours des dix dernières minutes. \n\n Veuillez indiquer dans quelle mesure vous êtes d"accord avec chaque phrase.',50) '\n\n\n Appuyer sur un bouton pour continuer.'], 'center', 'center', white);
     Screen('Flip', window);
 end
 
@@ -70,13 +70,25 @@ while 1
     end
 end
 
-% placeholder page
+% 2nd instruction page
 if site == 'B'
-    DrawFormattedText(window, [WrapString('Klicken Sie auf die Schaltflächen im rechten Bereich, um eine Antwort auszuwählen. \n\n Bestätigen Sie diese mit der oberen Taste links.',50)  '\n\n\n'], 'center', 'center', white);
+
+    DrawFormattedText(window, [WrapString('Drücken Sie die Knöpfe in Ihrer rechten Hand, um eine Antwort auszuwählen. \n\n Der oberste Knopf entspricht der 1, der nächste der 2, usw.', 50)], 'center', 'center', white);
     Screen('Flip', window); 
+    
+    WaitSecs(6);
+    DrawFormattedText(window, [WrapString('Drücken Sie die Knöpfe in Ihrer rechten Hand, um eine Antwort auszuwählen. \n\n Der oberste Knopf entspricht der 1, der nächste der 2, usw. \n\n Bestätigen Sie Ihre Auswahl mit dem obersten Knopf in Ihrer linken Hand.',50)  '\n\n\n Drücken Sie eine beliebige Taste um zu beginnen'], 'center', 'center', white);
+    Screen('Flip', window); 
+
 elseif site == 'G'
-    DrawFormattedText(window, [WrapString('Cliquez sur les boutons dans le volet droit pour choisir une réponse. \n\n Confirmez avec le bouton du haut à gauche. ',50)  '\n\n\n'], 'center', 'center', white);
+
+    DrawFormattedText(window, [WrapString('Cliquez sur les boutons dans le volet droit pour choisir une réponse. \n\n Le bouton du haut correspond à 1, le suivant à 2, etc. \n\n Confirmez avec le bouton du haut à gauche. ',50)  '\n\n\n Appuyer sur un bouton pour continuer'], 'center', 'center', white);
     Screen('Flip', window);
+    
+    WaitSecs(6);
+    DrawFormattedText(window, [WrapString('Cliquez sur les boutons dans le volet droit pour choisir une réponse. \n\n Le bouton du haut correspond à 1, le suivant à 2, etc. \n\n Confirmez avec le bouton du haut à gauche. ',50)  '\n\n\n Appuyer sur un bouton pour continuer'], 'center', 'center', white);
+    Screen('Flip', window);
+
 end
 
 % select any key to go forward
