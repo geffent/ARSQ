@@ -72,7 +72,7 @@ end
 
 % placeholder page
 if site == 'B'
-    DrawFormattedText(window, [WrapString('Klicken Sie auf die Schaltflächen im rechten Bereich, um eine Antwort auszuwählen. \n\n Bestätigen Sie does mit der oberen Taste links.',50)  '\n\n\n'], 'center', 'center', white);
+    DrawFormattedText(window, [WrapString('Klicken Sie auf die Schaltflächen im rechten Bereich, um eine Antwort auszuwählen. \n\n Bestätigen Sie diese mit der oberen Taste links.',50)  '\n\n\n'], 'center', 'center', white);
     Screen('Flip', window); 
 elseif site == 'G'
     DrawFormattedText(window, [WrapString('Cliquez sur les boutons dans le volet droit pour choisir une réponse. \n\n Confirmez avec le bouton du haut à gauche. ',50)  '\n\n\n'], 'center', 'center', white);
