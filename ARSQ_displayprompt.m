@@ -1,15 +1,20 @@
-
 function [response] = ARSQ_displayprompt(ARSQ_item, window, screenXpixels, screenYpixels)
 
 ARSQ_modifyme;	% set the subject-specific experimental parameters
 
 % custom definitions depending on input source, keyboard or game pad
 if usegamepad == 0  % for use with keyboard
-    one = '1!';         
-    two = '2@';          
-    three = '3#';
-    four = '4$';
-    confirm = 'Return';
+%     one = '1!';         
+%     two = '2@';          
+%     three = '3#';
+%     four = '4$';
+%     confirm = 'Return';
+%     
+    one = '1';         
+    two = '2';          
+    three = '3';
+    four = '4';
+    confirm = '6';
 elseif usegamepad == 1  % for use with gamepad inside scanner
     one = '1';         
     two = '2';          
@@ -17,6 +22,9 @@ elseif usegamepad == 1  % for use with gamepad inside scanner
     four = '4';
     confirm = '6';
 end
+
+% keys & display settings (multiple screens and mirror-inverted)
+ KbName('UnifyKeyNames');
 
 Screen('TextFont', window, 'Times');
 x_locs = [screenXpixels*0.20, screenXpixels*0.40, screenXpixels*0.60, screenXpixels*0.80];
@@ -48,16 +56,18 @@ for i = 1:length(ARSQ_item)
     Screen('Flip', window);
     
     while KbCheck; end % Wait until all keys are released.
-    
+        
     while 1 % This while loop ensures that the keyboard is continuously checked, it is a Psychtoolbox feature
         % Check the state of the keyboard.
         [keyIsDown,~,keyCode] = KbCheck;
         if keyIsDown
-            v = find(keyCode);
-            keyname = KbName(v);
-                
-            if strcmp(keyname, one) || strcmp(keyname, two) ...
-                    || strcmp(keyname, three) || strcmp(keyname, four)
+%             v = find(keyCode);
+%             keyname = KbName(v);
+               keyname = KbName(keyCode);
+               if iscell(keyname); keyname=keyname{1};end
+            
+            if strcmp(keyname(1), one) || strcmp(keyname(1), two) ...
+                    || strcmp(keyname(1), three) || strcmp(keyname(1), four)
 
                 response(i,:) = str2num(keyname(1));
                 % redraw the whole screen marking the chosen answer
@@ -91,7 +101,7 @@ for i = 1:length(ARSQ_item)
             % Check if Return was pressed _and_ subject gave valid answer
             numberOfQuestionsAsked = i;
             numberOfValidAnswersGiven = size(response, 1);
-            if strcmp(keyname, confirm) && ...
+            if strcmp(keyname(1), confirm) && ...
                 numberOfValidAnswersGiven == numberOfQuestionsAsked
                 res = response(i, :);
                 if (res == 1 || res == 2 || res == 3 || res == 4)
