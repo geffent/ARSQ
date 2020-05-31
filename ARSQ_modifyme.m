@@ -13,7 +13,7 @@ doscanner = 1; % 0: outside scanner the scanner
 %        Patient Information 
 %--------------------------------------------------------------------------
 site = 'B'; % 'B' for Berlin, 'G' for Geneva 
-group = 'pilot';      % 'C' for controls, and 'S' for patients; 'RLP' for pilot 
+group = 'pilot';      % 'C' for controls, and 'S' for patients; 'pilot' for pilot 
 subjn = 'x8x'; % Subject Number.; Pilot start with 041
 session = 'T2'; % Session Number: T1 for first assessment, T2 for 2nd assessment
 
