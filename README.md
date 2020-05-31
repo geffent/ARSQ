@@ -1,7 +1,7 @@
 **NY Cognition Questionnaire for post-resting-state thought patterns, for use in scanner.**
 
 To run the task, 
-1. Edit site, subject group, subhect number/identifier, and sessions in `ARSQ_modifyme.m`.
+1. Edit the varibales for site, participant group, subject number/identifier, and session in `ARSQ_modifyme.m`.
 2. Run `ARSQ()`.
 
 The output is an excel spreadshit with the subject's answers, stored in a subfolder called `results`.
